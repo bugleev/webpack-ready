@@ -1,11 +1,11 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const webpack = require("webpack");
 const path = require("path");
-const bootstrapEntryPoints = require('./webpack.bootstrap.config');
+const bootstrapEntryPoints = require("./webpack.bootstrap.config");
 
-let isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === "production";
 const cssDev = ["style-loader", "css-loader", "sass-loader"];
 const cssProd = ExtractTextPlugin.extract({
 	fallback: "style-loader",
@@ -13,7 +13,9 @@ const cssProd = ExtractTextPlugin.extract({
 });
 const cssConfig = isProd ? cssProd : cssDev;
 
-const bootstrapConfig = isProd ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev;
+const bootstrapConfig = isProd
+	? bootstrapEntryPoints.prod
+	: bootstrapEntryPoints.dev;
 
 module.exports = {
 	entry: {
@@ -32,7 +34,7 @@ module.exports = {
 				loader: "babel-loader",
 				options: {
 					babelrc: false,
-					presets: [['env', { modules: false }]]
+					presets: [["env", { modules: false }]]
 				}
 			},
 			{
@@ -46,9 +48,15 @@ module.exports = {
 					"image-webpack-loader"
 				]
 			},
-			{ test: /\.(woff2?|svg)$/, loader: 'url-loader?limit=10000&name=fonts/[name].[ext]' },
-			{ test: /\.(ttf|eot)$/, loader: 'file-loader?name=fonts/[name].[ext]' },
-			{ test: /bootstrap[\/\\]dist[\/\\]js[\/\\]umd[\/\\]/, loader: 'imports-loader?jQuery=jquery' },
+			{
+				test: /\.(woff2?|svg)$/,
+				loader: "url-loader?limit=10000&name=fonts/[name].[ext]"
+			},
+			{ test: /\.(ttf|eot)$/, loader: "file-loader?name=fonts/[name].[ext]" },
+			{
+				test: /bootstrap[\/\\]dist[\/\\]js[\/\\]umd[\/\\]/,
+				loader: "imports-loader?jQuery=jquery"
+			}
 		]
 	},
 	devServer: {
@@ -59,7 +67,7 @@ module.exports = {
 		open: true
 	},
 	plugins: [
-		new CleanWebpackPlugin(['dist']),
+		new CleanWebpackPlugin(["dist"]),
 		new ExtractTextPlugin({
 			filename: "css/[name].css",
 			disable: !isProd,
@@ -92,7 +100,7 @@ module.exports = {
 			Scrollspy: "exports-loader?Scrollspy!bootstrap/js/dist/scrollspy",
 			Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
 			Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
-			Util: "exports-loader?Util!bootstrap/js/dist/util",
+			Util: "exports-loader?Util!bootstrap/js/dist/util"
 		})
 	]
 };
