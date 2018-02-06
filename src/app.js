@@ -1,3 +1,3 @@
-const css = require("./app.scss");
+import css from "./app.scss";
 
 console.log("TEST from dev-server!");
