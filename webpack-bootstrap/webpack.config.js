@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 const bootstrapEntryPoints = require("./webpack.bootstrap.config");
-
+const karma = require('karma');
 const isProd = process.env.NODE_ENV === "production";
 const cssDev = ["style-loader", "css-loader", "sass-loader"];
 const cssProd = ExtractTextPlugin.extract({
