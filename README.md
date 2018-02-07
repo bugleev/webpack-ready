@@ -44,10 +44,6 @@ You can run tests with Karma
 ```bash
 npm run test
 ```
-validate Webpack syntax
-```bash
-npm run validate
-```
 run development mode, where the dev-server is started and all css is served from the memory with the [.HotModuleReplacementPlugin](https://webpack.js.org/guides/hot-module-replacement/) feature
 ```bash
 npm run dev
