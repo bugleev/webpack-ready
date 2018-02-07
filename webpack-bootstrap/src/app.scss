@@ -1,2 +1,12 @@
-@import './bootstrap/customizations.scss';
+body {
+  background: url("./images/mooning_@2X.png") center center no-repeat;
+	background-size: cover;
+}
+h1{
+  margin: 0 auto; 
+}
+body{
+  text-align: center;
+}
+
 

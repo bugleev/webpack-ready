@@ -1,9 +1,8 @@
 // Customize Bootstrap variables that get imported before the original Bootstrap variables.
 // Thus original Bootstrap variables can depend on values from here.
 $green: #5c96b8;
-
-
-
+$thumbnail-border-width: 0;
+$thumbnail-bg: none;
 // If you're using a custom icon font path, specify it as follows
 // $icon-font-path: ../fonts // This path is relative to this file
 // $icon-font-name: 'glyphicons' // The name of the font you want to use
