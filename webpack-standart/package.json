@@ -4,6 +4,8 @@
 	"description": "",
 	"main": "app.js",
 	"scripts": {
+		"test": "karma start",
+		"watch:test": "npm test -- --auto-watch --no-single-run",
 		"dev": "webpack-dev-server",
 		"prod": "cross-env NODE_ENV=production webpack -p"
 	},
@@ -21,6 +23,11 @@
 		"file-loader": "^1.1.6",
 		"html-webpack-plugin": "^2.30.1",
 		"image-webpack-loader": "^4.0.0",
+		"karma": "^2.0.0",
+		"karma-chrome-launcher": "^2.2.0",
+		"karma-firefox-launcher": "^1.1.0",
+		"karma-mocha": "^1.3.0",
+		"mocha": "^5.0.0",
 		"node-sass": "^4.7.2",
 		"postcss": "^6.0.17",
 		"sass-loader": "^6.0.6",
