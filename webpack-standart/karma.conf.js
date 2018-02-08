@@ -1,10 +1,11 @@
 // Karma configuration
 // Generated on Wed Feb 07 2018 23:48:19 GMT+0300 (RTZ 2 (зима))
 const webpackEnv = { test: true };
-const webpackConfig = require('./webpack.config')(webpackEnv);
+const webpackConfig = require("./webpack.config")(webpackEnv);
+const path = require("path");
 const fileGlob = "src/test/**/*.test.js";
-
-module.exports = function (config) {
+process.env.BABEL_ENV = "test";
+module.exports = function(config) {
 	config.set({
 		// base path that will be used to resolve all patterns (eg. files, exclude)
 		basePath: "",
@@ -22,15 +23,29 @@ module.exports = function (config) {
 		// preprocess matching files before serving them to the browser
 		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 		preprocessors: {
-			[fileGlob]: ['webpack']
+			[fileGlob]: ["webpack"]
 		},
 		webpack: webpackConfig,
 		webpackMiddleware: { noInfo: true },
 		// test results reporter to use
 		// possible values: 'dots', 'progress'
 		// available reporters: https://npmjs.org/browse/keyword/karma-reporter
-		reporters: ["progress"],
-
+		reporters: ["progress", "coverage"],
+		coverageReporters: {
+			reporters: [
+				{
+					type: "lcov",
+					dir: "coverage/",
+					subdir: "."
+				},
+				{
+					type: "json",
+					dir: "coverage/",
+					subdir: "."
+				},
+				{ type: "text-summary" }
+			]
+		},
 		// web server port
 		port: 9876,
 

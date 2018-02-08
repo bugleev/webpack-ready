@@ -43,11 +43,7 @@ module.exports = env => {
 				{
 					test: /\.js$/,
 					exclude: /node_modules/,
-					loader: "babel-loader",
-					options: {
-						babelrc: false,
-						presets: [["env", { modules: false }]]
-					}
+					loader: "babel-loader"
 				},
 				{
 					test: /\.scss$/,
@@ -60,7 +56,10 @@ module.exports = env => {
 						"image-webpack-loader"
 					]
 				},
-				{ test: require.resolve("jquery"), loader: "expose-loader?$!expose-loader?jquery" }
+				{
+					test: require.resolve("jquery"),
+					loader: "expose-loader?$!expose-loader?jquery"
+				}
 			]
 		},
 		devServer: {
@@ -77,9 +76,11 @@ module.exports = env => {
 				disable: !isProd,
 				allChunks: true
 			}),
-			isTest ? undefined : new webpack.optimize.CommonsChunkPlugin({
-				name: "vendor"
-			}),
+			isTest
+				? undefined
+				: new webpack.optimize.CommonsChunkPlugin({
+						name: "vendor"
+					}),
 			new HtmlWebpackPlugin({
 				title: "Webpack template",
 				hash: true,
@@ -93,5 +94,5 @@ module.exports = env => {
 				"window.jQuery": "jquery"
 			})
 		].filter(p => !!p)
-	}
+	};
 };

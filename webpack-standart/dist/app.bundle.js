@@ -1,1 +1,0 @@
-webpackJsonp([0],{"./src/app.js":function(s,c,e){"use strict";Object.defineProperty(c,"__esModule",{value:!0}),function(s){var c=e("./src/css/app.scss");e.n(c);s(document).ready(function(){console.log("TEST")})}.call(c,e("./node_modules/jquery/dist/jquery.js-exposed"))},"./src/css/app.scss":function(s,c){}},["./src/app.js"]);
