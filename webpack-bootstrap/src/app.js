@@ -1,3 +1,3 @@
 import css from "./app.scss";
 
-console.log("TEST from dev-server!");
+console.log("This is from app!");

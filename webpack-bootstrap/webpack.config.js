@@ -4,7 +4,6 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 const bootstrapEntryPoints = require("./webpack.bootstrap.config");
-
 const isProd = process.env.NODE_ENV === "production";
 const cssDev = ["style-loader", "css-loader", "sass-loader"];
 const cssProd = ExtractTextPlugin.extract({
@@ -19,13 +18,16 @@ const bootstrapConfig = isProd
 	: bootstrapEntryPoints.dev;
 
 module.exports = {
+	devtool: isProd ? "source-map" : "eval",
+	bail: isProd ? true : false,
 	entry: {
 		app: "./src/app.js",
-		bootstrap: bootstrapConfig
+		vendor: [bootstrapConfig, "./src/vendor.js"]
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
-		filename: "[name].bundle.js"
+		filename: "[name].bundle.js",
+		pathinfo: !isProd
 	},
 	module: {
 		rules: [
