@@ -18,9 +18,10 @@ const bootstrapConfig = isProd
 	: bootstrapEntryPoints.dev;
 
 module.exports = {
+	devtool: "source-map",
 	entry: {
 		app: "./src/app.js",
-		bootstrap: bootstrapConfig
+		vendor: [bootstrapConfig, "./src/vendor.js"]
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),

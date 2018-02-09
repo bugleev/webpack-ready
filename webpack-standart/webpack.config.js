@@ -30,9 +30,10 @@ const cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = env => {
 	return {
+		devtool: "source-map",
 		entry: {
 			app: "./src/app.js",
-			vendor: ["lodash", "jquery"]
+			vendor: ["lodash", "jquery", "./src/vendor.js"]
 		},
 		output: {
 			path: path.resolve(__dirname, "dist"),
@@ -79,8 +80,8 @@ module.exports = env => {
 			isTest
 				? undefined
 				: new webpack.optimize.CommonsChunkPlugin({
-						name: "vendor"
-					}),
+					name: "vendor"
+				}),
 			new HtmlWebpackPlugin({
 				title: "Webpack template",
 				hash: true,
