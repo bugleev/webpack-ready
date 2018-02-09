@@ -30,14 +30,16 @@ const cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = env => {
 	return {
-		devtool: "source-map",
+		devtool: isProd ? "source-map" : "eval",
+		bail: isProd ? true : false,
 		entry: {
 			app: "./src/app.js",
 			vendor: ["lodash", "jquery", "./src/vendor.js"]
 		},
 		output: {
 			path: path.resolve(__dirname, "dist"),
-			filename: "[name].bundle.js"
+			filename: "[name].bundle.js",
+			pathinfo: !isProd
 		},
 		module: {
 			rules: [

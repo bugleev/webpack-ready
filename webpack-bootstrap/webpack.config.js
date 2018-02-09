@@ -18,14 +18,16 @@ const bootstrapConfig = isProd
 	: bootstrapEntryPoints.dev;
 
 module.exports = {
-	devtool: "source-map",
+	devtool: isProd ? "source-map" : "eval",
+	bail: isProd ? true : false,
 	entry: {
 		app: "./src/app.js",
 		vendor: [bootstrapConfig, "./src/vendor.js"]
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
-		filename: "[name].bundle.js"
+		filename: "[name].bundle.js",
+		pathinfo: !isProd
 	},
 	module: {
 		rules: [
